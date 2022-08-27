@@ -1,61 +1,55 @@
+import java.util.*;
+
 public class DataStream {
 
-    //Need to define an abstract data structure to represent infinite data streams
-    private int id;
-    private String dataType;
-    private String dataDescription;
-    private String inputMethod;
-    private String sampleValue;
+    public Queue<SingleStream> mq;
 
-    public DataStream(int id, String dataType, String dataDescription, String inputMethod, String sampleValue){
-        this.setId(id);
-        this.setDataType(dataType);
-        this.setDataDescription(dataDescription);
-        this.setInputMethod(inputMethod);
-        this.setSampleValue(sampleValue);
+    public void addRecord( String key, Object value) {
+        SingleStream singleStream = new SingleStream(key, value);
+        mq.add(singleStream);
     }
 
-//    public DataStream getDataStream(int id){
-//        return DataStream(id,)
-//    }n b
+    public Queue<SingleStream> getQueue() {
+        return  mq;
+    }
+}
 
-    public int getId() {
-        return id;
+class SingleStream {
+//    private long offset;
+    private String key;
+    private Object value;
+
+    public SingleStream(String key, Object value) {
+//        this.offset = offset;
+        this.key = key;
+        this.value = value;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public SingleStream() {
+
     }
 
-    public String getDataType() {
-        return dataType;
+//    public void setOffset(long offset) {
+//        this.offset = offset;
+//    }
+//
+//    public long getOffset() {
+//        return offset;
+//    }
+
+    public String getKey() {
+        return key;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public String getDataDescription() {
-        return dataDescription;
+    public Object getValue() {
+        return value;
     }
 
-    public void setDataDescription(String dataDescription) {
-        this.dataDescription = dataDescription;
-    }
-
-    public String getInputMethod() {
-        return inputMethod;
-    }
-
-    public void setInputMethod(String inputMethod) {
-        this.inputMethod = inputMethod;
-    }
-
-    public String getSampleValue() {
-        return sampleValue;
-    }
-
-    public void setSampleValue(String sampleValue) {
-        this.sampleValue = sampleValue;
+    public void setValue(Object value) {
+        this.value = value;
     }
 }
