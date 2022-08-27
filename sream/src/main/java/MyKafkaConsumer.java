@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -8,7 +9,7 @@ import org.slf4j.LoggerFactory;
 public class MyKafkaConsumer {
 	
 	private final KafkaConsumer<String, String> consumer;
-	private static final Logger logger = LoggerFactory.getLogger(MyKafkaConsumer.class);
+	private static final Logger logger = LoggerFactory.getLogger(MyKafkaProducer.class);
 	
 	public MyKafkaConsumer() {
 		Properties pros = new Properties();
@@ -20,6 +21,10 @@ public class MyKafkaConsumer {
 		pros.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		
 		this.consumer = new KafkaConsumer<>(pros);
+	}
+
+	public void subscribe(String topic){
+		consumer.subscribe(Arrays.asList(topic));
 	}
 
 }

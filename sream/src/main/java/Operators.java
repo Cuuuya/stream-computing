@@ -1,8 +1,10 @@
 public class Operators {
 
-    public DataStream source(DataStream dataStream){
+    public DataStream source(String topic){
 //        get data from kafka and output datastreams
-        return dataStream;
+        MyKafkaConsumer consumer = new MyKafkaConsumer();
+        consumer.subscribe(topic);
+        return null;
     }
 
     public static void sink(DataStream dataStream){
