@@ -32,6 +32,7 @@ public class MyKafkaProducer {
 			for (int i = 0; i < 100; i++) {
 				// key/value pairs
 				producer.send(new ProducerRecord<String, String>(topic, Integer.toString(i), data));
+
 			}
 		} catch (Exception e) {
 			logger.error(String.format("Topic:[%s], data:[%s], ", topic, data) + e);

@@ -13,6 +13,7 @@ public class MyKafkaConsumer {
 	private final KafkaConsumer<String, String> consumer;
 	//private final String topic;
 	private static final Logger logger = LoggerFactory.getLogger(MyKafkaConsumer.class);
+
 	
 	public MyKafkaConsumer(String topic) {
 		Properties pros = new Properties();
@@ -27,21 +28,24 @@ public class MyKafkaConsumer {
 		//this.topic = topic_name;
 		this.consumer.subscribe(Arrays.asList(topic));
 	}
-	
-	public void get_data() {
-		while(true) {
-			try{
-				ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100)); // waiting timeout
-				for (ConsumerRecord<String, String> record: records) {
-					System.out.printf("offset = %d, key = %s, value = %s/n", record.offset(), record.key(), record.value());
-				}
-			} catch (Exception e) {
-				logger.error("Error:" + e);
-			}
-			
 
-		}
+	public KafkaConsumer getConsumer() {
+		return this.consumer;
 	}
+	
+//	public void get_data() {
+//		while(true) {
+//			try{
+//				ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100)); // waiting timeout
+//				for (ConsumerRecord<String, String> record: records) {
+//					System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
+//				}
+//			} catch (Exception e) {
+//				logger.error("Error:" + e);
+//			}
+//
+//		}
+//	}
 	
 	public void destroy() {
 		consumer.close();
